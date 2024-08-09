@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stream Video Online.</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .container {
+            text-align: center;
+        }
+        video {
+            width: 100%;
+            max-width: 600px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>تشغيل فيديو مباشر</h1>
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            متصفحك لا يدعم تشغيل الفيديو.
+        </video>
+    </div>
+
+    <script>
+        // الحصول على الرابط من الURL
+        var urlParams = new URLSearchParams(window.location.search);
+        var videoUrl = urlParams.get('video');
+
+        if (videoUrl) {
+            var videoPlayer = document.getElementById("videoPlayer");
+            var videoSource = document.getElementById("videoSource");
+
+            videoSource.src = videoUrl;
+            videoPlayer.load();
+            videoPlayer.play();
+        } else {
+            alert("لم يتم توفير رابط فيديو في الURL.");
+        }
+    </script>
+</body>
+</html>
